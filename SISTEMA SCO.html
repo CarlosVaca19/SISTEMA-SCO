@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SISTEMA SCO</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <style>
+        .dropdown-menu {
+            display: none;
+            opacity: 0;
+            transform: translateY(-10px);
+            transition: all 0.3s ease;
+        }
+        
+        .dropdown-menu.show {
+            display: block;
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .chevron {
+            transition: transform 0.2s ease;
+        }
+        
+        .chevron.rotate {
+            transform: rotate(180deg);
+        }
+        
+        .overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.25);
+            z-index: 5;
+        }
+        
+        .overlay.show {
+            display: block;
+        }
+    </style>
+</head>
+<body class="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 p-4">
+    <div class="max-w-6xl mx-auto">
+        <!-- Header -->
+        <header class="bg-white rounded-lg shadow-lg p-6 mb-8">
+            <h1 class="text-3xl font-bold text-gray-800 text-center">
+                ACTIVIDADES SECCION COMERCIAL EEASA DZON
+            </h1>
+            <p class="text-gray-600 text-center mt-2">
+                Panel de registro y control de actividades
+            </p>
+        </header>
+
+        <!-- Main Navigation -->
+        <div class="bg-white rounded-lg shadow-lg p-6">
+            <div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
+                
+                <!-- Botón Usuarios con menú desplegable -->
+                <div class="relative">
+                    <button 
+                        id="usuariosBtn"
+                        class="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-6 rounded-lg shadow-md transition duration-300 ease-in-out transform hover:scale-105 flex items-center gap-2 min-w-48"
+                    >
+                        <i class="fas fa-users"></i>
+                        Usuarios
+                        <i id="chevronIcon" class="fas fa-chevron-down chevron"></i>
+                    </button>
+
+                    <!-- Menú desplegable -->
+                    <div id="dropdownMenu" class="dropdown-menu absolute top-full left-0 mt-2 w-64 bg-white rounded-lg shadow-xl border border-gray-200 z-10">
+                        <div class="py-2">
+                            <button onclick="openLink('https://docs.google.com/spreadsheets/d/11bFpX31zN2dpjUZaoCh-Ufa3N8VHs5bT9A1q6LlKNFo/edit?usp=sharing')" class="w-full text-left px-4 py-3 text-black-700 hover:bg-blue-50 hover:text-blue-600 transition duration-200 flex items-center gap-3">
+                                <i class="fas fa-arrow-right text-sm"></i>
+                                Eden Shiguango
+                            </button>
+                            <button onclick="openLink('https://docs.google.com/spreadsheets/d/15SRoEXUjGvbmByIouLoquGJj3USsa-VvBOnY9LT8OZs/edit?usp=sharing')" class="w-full text-left px-4 py-3 text-black-700 hover:bg-red-50 hover:text-red-600 transition duration-200 flex items-center gap-3">
+                                <i class="fas fa-arrow-right text-sm"></i>
+                                Klever Tanguila
+                            </button>
+                            <button onclick="openLink('https://docs.google.com/spreadsheets/d/1IeOuF8sjTXwTyJpcDKOrYZoOpBiohgVE49uqJibW1Bg/edit?usp=sharing')" class="w-full text-left px-4 py-3 text-black-700 hover:bg-pink-50 hover:text-pink-600 transition duration-200 flex items-center gap-3">
+                                <i class="fas fa-arrow-right text-sm"></i>
+                                Miriam Caluña
+                            </button>
+                            <button onclick="openLink('https://docs.google.com/spreadsheets/d/1NJf71QNerIjN0AfqpPvNypqhwhfM-qeswNDNnUtCAX4/edit?usp=sharing')" class="w-full text-left px-4 py-3 text-black-700 hover:bg-green-50 hover:text-green-600 transition duration-200 flex items-center gap-3">
+                                <i class="fas fa-arrow-right text-sm"></i>
+                                Darwin Salazar
+                            </button>
+                            <button onclick="openLink('https://docs.google.com/spreadsheets/d/1gE8fN-T6fsR9YZhUMNehI5YmfYGVVa5lIm3Qt3zzsdU/edit?usp=sharing')" class="w-full text-left px-4 py-3 text-black-700 hover:bg-yellow-50 hover:text-yellow-600 transition duration-200 flex items-center gap-3">
+                                <i class="fas fa-arrow-right text-sm"></i>
+                                Hector Paredes
+                            </button>
+                            <button onclick="openLink('https://docs.google.com/spreadsheets/d/1MeZbgbXHQXCKNA6qkAojAX-887b5T9lG-FmRw66xKJ4/edit?usp=sharing')" class="w-full text-left px-4 py-3 text-gray-700 hover:bg-purple-50 hover:text-purple-600 transition duration-200 flex items-center gap-3">
+                                <i class="fas fa-arrow-right text-sm"></i>
+                                Pedro Cerda
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Botón Informe Consolidado -->
+                <button 
+                    onclick="openLink('https://docs.google.com/spreadsheets/d/1YPAcvfer4-1oMvqIFFFb33rWB9uT3dM0M2V69jyksq8/edit?usp=sharing')"
+                    class="bg-green-600 hover:bg-green-700 text-white font-semibold py-3 px-6 rounded-lg shadow-md transition duration-300 ease-in-out transform hover:scale-105 flex items-center gap-2 min-w-48"
+                >
+                    <i class="fas fa-chart-bar"></i>
+                    Informe Consolidado SCO
+                </button>
+            </div>
+
+            <!-- Información adicional -->
+            <div class="mt-8 text-center text-gray-600">
+                <p class="text-sm">
+                    Seleccione su usuario correspondiente para el registro de actividades
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Overlay para cerrar menú en móvil -->
+    <div id="overlay" class="overlay" onclick="closeMenu()"></div>
+
+    <script>
+        let isMenuOpen = false;
+        
+        const usuariosBtn = document.getElementById('usuariosBtn');
+        const dropdownMenu = document.getElementById('dropdownMenu');
+        const chevronIcon = document.getElementById('chevronIcon');
+        const overlay = document.getElementById('overlay');
+        
+        usuariosBtn.addEventListener('click', function() {
+            toggleMenu();
+        });
+        
+        function toggleMenu() {
+            isMenuOpen = !isMenuOpen;
+            
+            if (isMenuOpen) {
+                dropdownMenu.classList.add('show');
+                chevronIcon.classList.add('rotate');
+                overlay.classList.add('show');
+            } else {
+                dropdownMenu.classList.remove('show');
+                chevronIcon.classList.remove('rotate');
+                overlay.classList.remove('show');
+            }
+        }
+        
+        function closeMenu() {
+            if (isMenuOpen) {
+                isMenuOpen = false;
+                dropdownMenu.classList.remove('show');
+                chevronIcon.classList.remove('rotate');
+                overlay.classList.remove('show');
+            }
+        }
+        
+        function openLink(url) {
+            window.open(url, '_blank');
+            closeMenu();
+        }
+        
+        // Cerrar menú al hacer click fuera
+        document.addEventListener('click', function(event) {
+            if (!usuariosBtn.contains(event.target) && !dropdownMenu.contains(event.target)) {
+                closeMenu();
+            }
+        });
+        
+        // Cerrar menú con tecla Escape
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'Escape') {
+                closeMenu();
+            }
+        });
+    </script>
+</body>
+</html>
